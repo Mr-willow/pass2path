@@ -1,8 +1,10 @@
 import tensorflow as tf
 import numpy as np
-from src.data.generate_data import generate_dataset
-import tensorflow_core as tf_core
-from src.data.generate_data import get_path_vs_id, generate_bucket_list
+from data.generate_data import generate_dataset, get_path_vs_id, generate_bucket_list
+
+gpus = tf.config.experimental.list_physical_devices(device_type='GPU')
+for gpu in gpus:
+    tf.config.experimental.set_memory_growth(device=gpu, enable=True)
 
 path2id, id2path = get_path_vs_id()
 
@@ -72,7 +74,6 @@ class Seq2seq(tf.keras.Model):
             output_symbol = tf.ones(shape=(10,), dtype=tf.int64)
             while not all(tf.equal(output_symbol, end_symbol)):
                 output = self.decoder_input_embed(output)  # batch_size, length, embed_size
-                print(output.shape)
                 decoder_output, states = self.decoder_lstms(output[:, 0, :], states)  # batch_size, vector_length
                 output = self.decoder_output_dense1(decoder_output)  # batch_size, 64
                 output = self.decoder_output_dense2(output)  # batch_size, char_num+3

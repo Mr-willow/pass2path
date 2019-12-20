@@ -1,4 +1,4 @@
-from src.data.generate_path import find_med_backtrace
+from data.generate_path import find_med_backtrace
 import matplotlib.pyplot as plt
 
 def get_path_length_statistics(filename):

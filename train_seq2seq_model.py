@@ -1,8 +1,7 @@
 import tensorflow as tf
 import numpy as np
-from src.generate_seq2seq_model import Seq2seq
-from src.data.generate_data import generate_dataset, generate_bucket_list
-from src.data.generate_data import get_path_vs_id
+from generate_seq2seq_model import Seq2seq
+from data.generate_data import generate_dataset, get_path_vs_id, generate_bucket_list
 
 path2id, id2path = get_path_vs_id()
 

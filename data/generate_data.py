@@ -1,8 +1,8 @@
 import tensorflow as tf
 import numpy as np
 import json
-from src.data.switch2keyboard import switch2keyboard_list
-from src.data.generate_path import find_med_backtrace
+from data.switch2keyboard import switch2keyboard_list
+from data.generate_path import find_med_backtrace
 
 max_length = 20
 min_length = 4
