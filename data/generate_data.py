@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import json
-from data.switch2keyboard import switch2keyboard_list
+from data.word2keyboard import switch2keyboard_list
 from data.generate_path import find_med_backtrace
 
 max_length = 20
@@ -49,8 +49,11 @@ def get_path_vs_id():
     return path2id, id2path
 
 
+char2num, num2char = get_char_vs_num()
+path2id, id2path = get_path_vs_id()
+
+
 def generate_dataset(filename):
-    char2num, num2char = get_char_vs_num()
 
     train_dataset = []
     target_dataset = []
@@ -94,8 +97,6 @@ def generate_dataset(filename):
 
 
 def generate_bucket_list(filename):
-    char2num, num2char = get_char_vs_num()
-    path2id, id2path = get_path_vs_id()
 
     train_dataset = []
     target_dataset = []
@@ -153,8 +154,8 @@ def generate_bucket_list(filename):
 
 
 if __name__ == '__main__':
-    # train_dict, target_dict = generate_bucket_list('csdn_dodonew_reuse_uniq.txt')
-    # print(target_dict)
-    d1, d2 = get_path_vs_id()
-    print(d2)
-    print(d1.__len__())
+    train_dict, target_dict = generate_bucket_list('csdn_dodonew_reuse_uniq.txt')
+    print(target_dict)
+    # d1, d2 = get_path_vs_id()
+    # print(d2)
+    # print(d1.__len__())
